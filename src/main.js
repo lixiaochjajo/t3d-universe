@@ -153,18 +153,18 @@ const ambientLight = new t3d.AmbientLight(0xffffff, 1.3);
 scene.add(ambientLight);
 
 
-const cube_texture = new TextureCubeLoader().load([
-    "milkyway/sky/rightImage.png",
-    "milkyway/sky/leftImage.png",
-    "milkyway/sky/upImage.png",
-    "milkyway/sky/downImage.png",
-    "milkyway/sky/backImage.png",
-    "milkyway/sky/frontImage.png",
-]);
+// const cube_texture = new TextureCubeLoader().load([
+//     "milkyway/sky/rightImage.png",
+//     "milkyway/sky/leftImage.png",
+//     "milkyway/sky/upImage.png",
+//     "milkyway/sky/downImage.png",
+//     "milkyway/sky/backImage.png",
+//     "milkyway/sky/frontImage.png",
+// ]);
 
-const sky_box = new SkyBox(cube_texture);
+// const sky_box = new SkyBox(cube_texture);
 const camera = new t3d.Camera();
-camera.add(sky_box);
+// camera.add(sky_box);
 camera.position.set(0, 75, -200);
 camera.lookAt(new t3d.Vector3(0, 0, 0), new t3d.Vector3(0, 1, 0));
 camera.setPerspective((75 / 180) * Math.PI, width / height, 0.001, 2000);
