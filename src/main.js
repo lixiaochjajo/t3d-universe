@@ -185,8 +185,8 @@ let timeLine = {
 };
 
 const loaderGltf = new GLTFLoader();
-const galacticModelUrl = "/milkyway/scene.glb";
-const earthModelUrl = "/milkyway/earth.glb";
+const galacticModelUrl = "milkyway/scene.glb";
+const earthModelUrl = "milkyway/earth.glb";
 let galacticData;
 await loaderGltf.load(galacticModelUrl).then(function (result) {
     galacticData = result.accessors[0].buffer.array;
