@@ -125,7 +125,7 @@ function getPointMesh(objects) {
 }
 function getGalacticPlan() {
     const planeGeometry = new t3d.PlaneGeometry(600, 600);
-    const texturePlan = loader.load("/milkyway/galactictop.png");
+    const texturePlan = loader.load("milkyway/galactictop.png");
     texturePlan.magFilter = t3d.TEXTURE_FILTER.LINEAR;
     texturePlan.minFilter = t3d.TEXTURE_FILTER.LINEAR;
     const planeMaterial = new t3d.BasicMaterial();
