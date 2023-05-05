@@ -153,18 +153,9 @@ const ambientLight = new t3d.AmbientLight(0xffffff, 1.3);
 scene.add(ambientLight);
 
 
-// const cube_texture = new TextureCubeLoader().load([
-//     "milkyway/sky/rightImage.png",
-//     "milkyway/sky/leftImage.png",
-//     "milkyway/sky/upImage.png",
-//     "milkyway/sky/downImage.png",
-//     "milkyway/sky/backImage.png",
-//     "milkyway/sky/frontImage.png",
-// ]);
 
-// const sky_box = new SkyBox(cube_texture);
 const camera = new t3d.Camera();
-// camera.add(sky_box);
+
 camera.position.set(0, 75, -200);
 camera.lookAt(new t3d.Vector3(0, 0, 0), new t3d.Vector3(0, 1, 0));
 camera.setPerspective((75 / 180) * Math.PI, width / height, 0.001, 2000);
@@ -191,14 +182,8 @@ let galacticData;
 await loaderGltf.load(galacticModelUrl).then(function (result) {
     galacticData = result.accessors[0].buffer.array;
 });
-let earthModel;
-// loaderGltf.load(earthModelUrl).then(function (result) {
-//     result.root.scale.set(0.0003, 0.0003, 0.0003);
-//     result.root.position.set(0, 9.2, 110);
-//     earthModel = result.root;
-//     earthModel.visible = false;
-//     scene.add(earthModel);
-// });
+
+
 
 const loader = new Texture2DLoader();
 let textureArray = [];
@@ -366,7 +351,7 @@ gui.add(timeLine, "extends", 0, 10, 0.01).onChange((val) => {
         Grouper[i].material.opacity = 0;
     }
     Grouper[0].material.opacity = 0;
-    // earthModel.visible = false;
+    earthModel.visible = false;
     // if (dist < 80) {
     //     sky_box.material.opacity = dist / 80.;
     // }
@@ -384,7 +369,7 @@ gui.add(timeLine, "extends", 0, 10, 0.01).onChange((val) => {
         }
     }
     if (dist < 1) {
-        // earthModel.visible = true;
+        earthModel.visible = true;
     }
     galacticPlane.material.opacity = 1.0 - data;
     camera.lookAt(new t3d.Vector3(0, 0, 0), new t3d.Vector3(0, 1, 0));
@@ -417,5 +402,23 @@ function onWindowResize() {
     forwardRenderer.backRenderTarget.resize(width, height);
 
 }
+let earthModel;
+loaderGltf.load(earthModelUrl).then(function (result) {
+    result.root.scale.set(0.0003, 0.0003, 0.0003);
+    result.root.position.set(0, 9.2, 110);
+    earthModel = result.root;
+    earthModel.visible = false;
+    scene.add(earthModel);
+});
+const cube_texture = new TextureCubeLoader().load([
+    "milkyway/sky/rightImage.png",
+    "milkyway/sky/leftImage.png",
+    "milkyway/sky/upImage.png",
+    "milkyway/sky/downImage.png",
+    "milkyway/sky/backImage.png",
+    "milkyway/sky/frontImage.png",
+]);
 
+const sky_box = new SkyBox(cube_texture);
+camera.add(sky_box);
 window.addEventListener("resize", onWindowResize, false);
