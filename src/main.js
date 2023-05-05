@@ -201,7 +201,7 @@ let textureUrl = [
     "addlight.png",
 ];
 for (let i = 0; i < textureUrl.length; i++) {
-    textureArray.push(loader.load("milkyway/" + textureUrl[i]));
+   await textureArray.push(loader.load("milkyway/" + textureUrl[i]));
 }
 
 const params = [
