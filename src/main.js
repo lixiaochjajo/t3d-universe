@@ -386,7 +386,7 @@ function loop(count, deltaTime = 0.0166666) {
         pointsArray[i].material.uniforms.time += 0.003;
     }
     galacticPlane.euler.y = -time / 2;
-    sky_box.material.uniforms.iTime += deltaTime * 0.1 ;
+    sky_box.material.uniforms.iTime += deltaTime * 0.3 ;
     sky_box.material.uniforms.iResolution = [width, height];
   
     controller.update();
