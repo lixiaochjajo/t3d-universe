@@ -4,7 +4,7 @@ import { OrbitControls } from "t3d/examples/jsm//controls/OrbitControls.js";
 import { GUI } from "./libs/lil-gui.esm.min.js";
 import { GLTFLoader } from "t3d/examples/jsm//loaders/glTF/GLTFLoader.js";
 import { TextureCubeLoader } from "t3d/examples/jsm//loaders/TextureCubeLoader.js";
-import { SkyBox } from "t3d/examples/jsm//objects/SkyBox.js";
+import { SkyBox } from "./SkyBox.js";
 import { smokeFragmentShader, smokeVertexShader, pointUniforms, pointVertexShader, pointFragmentShader } from "./shader.js";
 import { ForwardRenderer } from 't3d/examples/jsm/render/ForwardRenderer.js';
 
@@ -156,18 +156,19 @@ scene.add(ambientLight);
 
 const camera = new t3d.Camera();
 
-camera.position.set(0, 75, -200);
+camera.position.set( 98.683,  155.738, -329.18);
 camera.lookAt(new t3d.Vector3(0, 0, 0), new t3d.Vector3(0, 1, 0));
 camera.setPerspective((75 / 180) * Math.PI, width / height, 0.001, 2000);
 scene.add(camera);
 
 const controller = new OrbitControls(camera, canvas);
 controller.target.set(0, 9.2, 110);
-controller.enablePan = false;
+// controller.enablePan = false;
 controller.rotateSpeed = 0.2;
 controller.minDistance = 0.05;
 controller.maxDistance = 700.0;
-
+window.controller = controller;
+window.camera = camera;
 const forwardRenderer = new ForwardRenderer(canvas);
 
 const gui = new GUI();
@@ -385,6 +386,9 @@ function loop(count, deltaTime = 0.0166666) {
         pointsArray[i].material.uniforms.time += 0.003;
     }
     galacticPlane.euler.y = -time / 2;
+    sky_box.material.uniforms.iTime += deltaTime * 0.1 ;
+    sky_box.material.uniforms.iResolution = [width, height];
+  
     controller.update();
     scene.updateMatrix();
     scene.updateRenderStates(camera);
